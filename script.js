@@ -90,6 +90,7 @@ function showError(msg) {
 }
 function logout() {
     currentUser = null;
+    localStorage.setItem("currentSessionUser","");
     authSection.classList.remove("hidden");
     dashboard.classList.add("hidden");
 };
@@ -103,7 +104,7 @@ const startSessionTimeout = () => {
 };
 const login = (username, password) => {
     const users = getUsers();
-
+    
     if (!users[username] || users[username].password !== password) {
         showError("Invalid username or password.");
         return;
@@ -112,6 +113,7 @@ const login = (username, password) => {
     currentUser = username;
     authSection.classList.add("hidden");
     dashboard.classList.remove("hidden");
+    localStorage.setItem("currentSessionUser", JSON.stringify(username));
 
     document.getElementById("welcome-msg").textContent = `Welcome, ${username}!`;
     updateWalletDisplay();
@@ -129,24 +131,33 @@ document.getElementById("login-btn").addEventListener("click", () => {
 document.getElementById("register-btn").addEventListener("click", () => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-
+    
     if (!username || !password) {
         showError("Please fill out all fields.");
         return;
     }
     
     const users = getUsers();
-    // console.log(users, username);
-    
     if (users[username]) {
         showError("Username already exists.");
         return;
     }
-
+    localStorage.setItem("currentSessionUser", JSON.stringify(username));
     errorMessage.classList.add("hidden");
     users[username] = { wallet: 0,totalSpend: 0, transactions: [], password };
     saveUsers(users);
     alert("Registration successful! Please log in.");
 });
+
+let currentSessionUser = JSON.parse(localStorage.getItem("currentSessionUser"));
+
 window.addEventListener("load",()=>{
+    if(currentSessionUser!==""){
+        const users = getUsers();
+        for(const userName in users){
+            if(userName===currentSessionUser){
+                login(userName,users[userName].password);
+            }
+        }
+    }
 });
