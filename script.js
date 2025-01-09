@@ -133,7 +133,9 @@ document.getElementById("register-btn").addEventListener("click", () => {
     let password = document.getElementById("password").value;
     username=username.trim();
     password=password.trim();
-    if (!username || !password) {
+    // console.log(username.length,password.length);
+    
+    if (username.length<=0 || password.length<=0) {
         showError("Please fill out all fields.");
         return;
     }
