@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./src/output.css" rel="stylesheet">
+  <title>Tailwind Setup</title>
+</head>
+
+<body class="bg-green-600">
+  <div class="container mx-auto p-6">
+    <!-- Login/Register Section -->
+    <div id="auth-section" class="max-w-md mx-auto bg-white p-6 mt-32 rounded-lg shadow-md">
+      <h2 class="text-2xl font-bold mb-4">Welcome</h2>
+      <div id="auth-form">
+        <input id="username" type="text" placeholder="Username" class="w-full p-2 mb-3 border rounded-lg">
+        <input id="password" type="password" placeholder="Password" class="w-full p-2 mb-3 border rounded-lg">
+        <button id="register-btn" class="w-full bg-blue-500 text-white p-2 rounded-lg mb-2">Register</button>
+        <button id="login-btn" class="w-full bg-green-500 text-white p-2 rounded-lg">Login</button>
+      </div>
+      <p id="error-message" class="text-red-500 mt-3 hidden"></p>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard" class="hidden">
+      <div class="flex justify-between items-center mb-4">
+        <h2 id="welcome-msg" class="text-2xl font-bold bg-yellow-200 rounded-md">Welcome</h2>
+        <button id="logout-btn" class="bg-red-500 text-white px-4 py-2 rounded-lg">Logout</button>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md mb-4">
+        <div class="flex justify-between">
+          <div>
+            <h3 class="text-xl font-bold mb-2">Wallet Balance</h3>
+            <p id="wallet-balance" class="text-green-500 text-lg font-bold">$0</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Total Spend</h3>
+            <p id="total-spend" class="text-green-500 text-lg font-bold">$0</p>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <input id="add-funds" type="number" placeholder="Amount to Add" class="w-full p-2 border rounded-lg mb-3">
+          <button id="add-funds-btn" class="w-full bg-blue-500 text-white p-2 rounded-lg">Add Funds</button>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md mb-4">
+        <h3 class="text-xl font-bold mb-2">Products</h3>
+        <ul id="product-list" class="space-y-3"></ul>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-bold mb-2">Transaction History</h3>
+        <ul id="transaction-history" class="space-y-2 text-sm"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
