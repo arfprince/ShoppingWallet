@@ -129,9 +129,10 @@ document.getElementById("login-btn").addEventListener("click", () => {
 });
 
 document.getElementById("register-btn").addEventListener("click", () => {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    username=username.trim();
+    password=password.trim();
     if (!username || !password) {
         showError("Please fill out all fields.");
         return;
